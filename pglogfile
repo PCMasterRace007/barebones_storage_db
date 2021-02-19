@@ -1,0 +1,52 @@
+2021-02-14 11:26:48.177 IST [85871] LOG:  starting PostgreSQL 13.2 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 10.2.0, 64-bit
+2021-02-14 11:26:48.182 IST [85871] LOG:  listening on IPv6 address "::1", port 5432
+2021-02-14 11:26:48.182 IST [85871] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-02-14 11:26:48.184 IST [85871] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-02-14 11:26:48.197 IST [85872] LOG:  database system was interrupted; last known up at 2021-02-13 20:18:45 IST
+2021-02-14 11:26:48.252 IST [85872] LOG:  database system was not properly shut down; automatic recovery in progress
+2021-02-14 11:26:48.258 IST [85872] LOG:  redo starts at 0/156D350
+2021-02-14 11:26:48.258 IST [85872] LOG:  invalid record length at 0/156D438: wanted 24, got 0
+2021-02-14 11:26:48.258 IST [85872] LOG:  redo done at 0/156D400
+2021-02-14 11:26:48.277 IST [85871] LOG:  database system is ready to accept connections
+2021-02-14 12:16:32.559 IST [90109] ERROR:  column "testuser" does not exist at character 42
+2021-02-14 12:16:32.559 IST [90109] STATEMENT:  select * from user_list where username = testuser
+	;
+2021-02-16 10:18:18.921 IST [3580] LOG:  starting PostgreSQL 13.2 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 10.2.0, 64-bit
+2021-02-16 10:18:18.927 IST [3580] LOG:  listening on IPv6 address "::1", port 5432
+2021-02-16 10:18:18.927 IST [3580] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-02-16 10:18:18.929 IST [3580] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-02-16 10:18:18.943 IST [3581] LOG:  database system was interrupted; last known up at 2021-02-14 12:56:49 IST
+2021-02-16 10:18:18.988 IST [3581] LOG:  database system was not properly shut down; automatic recovery in progress
+2021-02-16 10:18:18.992 IST [3581] LOG:  redo starts at 0/156E380
+2021-02-16 10:18:18.992 IST [3581] LOG:  invalid record length at 0/156E468: wanted 24, got 0
+2021-02-16 10:18:18.992 IST [3581] LOG:  redo done at 0/156E430
+2021-02-16 10:18:19.009 IST [3580] LOG:  database system is ready to accept connections
+2021-02-16 12:17:53.853 IST [5759] ERROR:  syntax error at or near "select" at character 53
+2021-02-16 12:17:53.853 IST [5759] STATEMENT:  select * from user_list where username = 'testuser2'select * from user_list where username = 'testuser3'
+2021-02-16 12:39:48.205 IST [6411] ERROR:  syntax error at or near "select" at character 53
+2021-02-16 12:39:48.205 IST [6411] STATEMENT:  select * from user_list where username = 'testuser4'select * from user_list where username = 'testuser5'
+2021-02-19 18:04:15.876 IST [3545] LOG:  starting PostgreSQL 13.2 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 10.2.0, 64-bit
+2021-02-19 18:04:15.881 IST [3545] LOG:  listening on IPv6 address "::1", port 5432
+2021-02-19 18:04:15.881 IST [3545] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-02-19 18:04:15.882 IST [3545] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-02-19 18:04:15.897 IST [3546] LOG:  database system was interrupted; last known up at 2021-02-16 13:23:45 IST
+2021-02-19 18:04:15.948 IST [3546] LOG:  database system was not properly shut down; automatic recovery in progress
+2021-02-19 18:04:15.953 IST [3546] LOG:  redo starts at 0/15711C8
+2021-02-19 18:04:15.953 IST [3546] LOG:  invalid record length at 0/15712B0: wanted 24, got 0
+2021-02-19 18:04:15.953 IST [3546] LOG:  redo done at 0/1571278
+2021-02-19 18:04:15.971 IST [3545] LOG:  database system is ready to accept connections
+2021-02-19 18:37:36.458 IST [4961] ERROR:  invalid byte sequence for encoding "UTF8": 0xde 0x5b
+2021-02-19 18:41:08.799 IST [5120] ERROR:  invalid byte sequence for encoding "UTF8": 0x95
+2021-02-19 18:48:50.369 IST [5630] ERROR:  syntax error at or near "&&" at character 1
+2021-02-19 18:48:50.369 IST [5630] STATEMENT:  &&pWselect * from user_list where username = '3user'
+2021-02-19 18:51:26.692 IST [5818] ERROR:  invalid byte sequence for encoding "UTF8": 0xd4 0xc6
+2021-02-19 18:52:39.501 IST [5871] ERROR:  invalid byte sequence for encoding "UTF8": 0xed 0x7f 0x73
+2021-02-19 18:53:57.327 IST [5942] ERROR:  invalid byte sequence for encoding "UTF8": 0xeb 0x63 0x05
+2021-02-19 19:00:00.753 IST [6498] ERROR:  invalid byte sequence for encoding "UTF8": 0xbf
+2021-02-19 19:01:00.674 IST [6546] ERROR:  invalid byte sequence for encoding "UTF8": 0xcd 0x19
+2021-02-19 19:07:24.611 IST [6788] ERROR:  invalid byte sequence for encoding "UTF8": 0xa1
+2021-02-19 19:08:41.206 IST [6861] ERROR:  invalid byte sequence for encoding "UTF8": 0xf9
+2021-02-19 19:10:03.094 IST [6915] ERROR:  invalid byte sequence for encoding "UTF8": 0xc4 0xc3
+2021-02-19 19:11:55.465 IST [6969] ERROR:  invalid byte sequence for encoding "UTF8": 0xf0 0x78 0x5d 0x05
+2021-02-19 19:14:10.052 IST [7031] ERROR:  invalid byte sequence for encoding "UTF8": 0xaf
+2021-02-19 19:14:38.581 IST [7079] ERROR:  invalid byte sequence for encoding "UTF8": 0x95

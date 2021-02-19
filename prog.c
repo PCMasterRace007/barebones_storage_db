@@ -2,125 +2,103 @@
 #include <stdlib.h>
 #include <string.h>
 #include <libpq-fe.h>
-/*void rtrim(char a[100])
-{
-    char rtrim[100] = "\0";
-    int i = strlen(a) - 1;
-    while (i >= 0)
-    {
-        if (a[i] == ' ' || a[i] == '\t')
-        {
-            rtrim[i] = '\0';
-            i--;
-        }
-        if (a[i] != ' ' || a[i] != '\t')
-        {
-            break;
-        }
-    }
-    while (i >= 0)
-    {
-        rtrim[i] = a[i];
-        i--;
-    }
-    printf("\nAfter rtrim string is [%s]\n", rtrim);
-    rtrimfinal = rtrim;
-}
-void ltrim(char b[100])
-{
-    char ltrim[100] = "\0";
-    int i = 0, j = 0;
-    while (b[i] != '\0')
-    {
-        if (b[i] != ' ' && b[i] != '\t')
-        {
-            break;
-        }
-        i++;
-    }
-    while (b[i] != '\0')
-    {
-        ltrim[j++] = b[i];
-        i++;
-    }
-    printf("\nAfter ltrim string is %s \n", ltrim);
-    ltrimfinal = ltrim;
-}*/
-char username[50];
-char password[50];
-char tmp[100];
-char tmpusr[50];
-char tmppass[50];
-char tmpsql[1000];
+#include <stdlib.h>
+//#define MAX 1000
+char *username;
+char *password;
+char *tmp;
+char *tmpusr;
+char *tmppass;
+char *tmpsqlsel;
+char *tmpsqlins;
 PGconn *conn;
 PGresult *res;
 char *connect_str = "host=localhost port=5432 dbname=project";
 FILE *fptr;
+void concatsqlsel()
+{
+    free(tmpsqlsel);
+    tmpsqlsel = (char *)calloc(1000, sizeof(char));
+    printf("%s", tmpsqlsel);
+    strcat(tmpsqlsel, "select * from user_list where username = \'");
+    strcat(tmpsqlsel, username);
+    strcat(tmpsqlsel, "\'");
+    printf("Query to be passed, \"%s\"", tmpsqlsel);
+}
+void concatsqlins()
+{
+    free(tmpsqlins);
+    tmpsqlins = (char *)calloc(1000, sizeof(char));
+    printf("%s", tmpsqlins);
+    strcat(tmpsqlins, "insert into user_list values(");
+    strcat(tmpsqlins, "\'");
+    strcat(tmpsqlins, username);
+    strcat(tmpsqlins, "\'");
+    strcat(tmpsqlins, ", ");
+    strcat(tmpsqlins, "\'");
+    strcat(tmpsqlins, password);
+    strcat(tmpsqlins, "\'");
+    strcat(tmpsqlins, ");");
+    strcat(tmpsqlins, "\0");
+    printf("query to be passed, \"%s\"", tmpsqlins);
+}
 void signup()
 {
     printf("Enter the username : - \n");
-    scanf("%s", username);
+    username = (char *)calloc(1000, sizeof(char));
+    scanf("%1000s", username);
     printf("Enter the password: - \n");
-    scanf("%s", password);
-    fptr = fopen("data.txt", "w");
-    fputs(username, fptr);
-    fputs(" ", fptr);
-    fputs(password, fptr);
-    fclose(fptr);
-    strcat(tmpsql, "insert into user_list values(");
-    strcat(tmpsql, "\'");
-    strcat(tmpsql, username);
-    strcat(tmpsql, "\'");
-    strcat(tmpsql, ", ");
-    strcat(tmpsql, "\'");
-    strcat(tmpsql, password);
-    strcat(tmpsql, "\'");
-    strcat(tmpsql, ");");
-    strcat(tmpsql, "\0");
-    printf("%s", tmpsql);
-    res = PQexec(conn, tmpsql); 
-
+    password = (char *)calloc(1000, sizeof(char));
+    scanf("%1000s", password);
+    concatsqlins();
+    res = PQexec(conn, tmpsqlins);
+    if (PQresultStatus(res) == PGRES_COMMAND_OK)
+    {
+        printf("\nSignup resgistration Successfull");
+    }
+    else
+    {
+        printf("\nSignup not successful, try again");
+    }
+    PQclear(res);
+    free(username);
+    free(password);
 }
 void login()
 {
     int i = 0;
     int j = 0;
     int k;
-    printf("Enter the username : - \n");
-    scanf("%s", username);
-    printf("Enter the password: - \n");
-    scanf("%s", password);
-    fptr = fopen("data.txt", "r");
-    fgets(tmp, 50, (FILE *)fptr);
-    while (tmp[i] != ' ')
+    int mrows;
+    printf("Enter the username : \n");
+    username = (char *)calloc(1000, sizeof(char));
+    scanf("%1000s", username);
+    printf("Enter the password: \n");
+    password = (char *)calloc(1000, sizeof(char));
+    scanf("%1000s", password);
+    concatsqlsel();
+    res = PQexec(conn, tmpsqlsel);
+    if (PQresultStatus(res) == PGRES_TUPLES_OK && PQntuples(res) == 1)
     {
-        tmpusr[i] = tmp[i];
-        i++;
-    }
-    k = strcmp(username, tmpusr);
-    if (k == 0)
-    {
-        printf("\nUsername matched");
-        while (tmp[i + 1] != '\0')
-        {
-            tmppass[j++] = tmp[i + 1];
-            i++;
-        }
-        k = strcmp(password, tmppass);
-        if (k == 0)
+        printf("\n%d tuples found", PQntuples(res));
+        printf("\nUsername found");
+        if (strcmp(PQgetvalue(res, 0, 1), password) == 0)
         {
             printf("\nPassword matched");
         }
         else
         {
-            printf("Incorrect Password");
+            printf("\npassword did not match, try again");
         }
     }
     else
     {
-        printf("\nIncorrect Username");
+        printf("\n%d", PQntuples(res));
+        printf("\nUsername not found");
     }
-    fclose(fptr);
+    PQclear(res);
+    free(username);
+    free(password);
 }
 void load()
 {
@@ -141,24 +119,23 @@ void load()
     }
     else
     {
-        printf("\n Invalid Choice ! ");
+        printf("\n Invalid Choice !");
     }
 }
 void main()
 {
-    conn = PQconnectdb(connect_str); 
-    if(PQstatus(conn) != CONNECTION_OK)
+    conn = PQconnectdb(connect_str);
+    if (PQstatus(conn) != CONNECTION_OK)
     {
-	    printf("Connection failed %s", PQerrorMessage(conn));
+        printf("Connection failed %s", PQerrorMessage(conn));
     }
     else
     {
-    	printf("Connection established successfully to database %s", PQdb(conn));
+        printf("Connection established successfully to database %s", PQdb(conn));
+        for (;;)
+        {
+            load();
+        }
+        PQfinish(conn);
     }
-    for (;;)
-    {
-        load();
-    }
-    PQfinish(conn);
 }
-
