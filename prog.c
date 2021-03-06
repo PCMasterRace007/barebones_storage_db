@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <libpq-fe.h>
-#include <stdlib.h>
-//#define MAX 1000
+#define MAX 1000
 char *username;
 char *password;
 char *tmp;
@@ -11,25 +10,28 @@ char *tmpusr;
 char *tmppass;
 char *tmpsqlsel;
 char *tmpsqlins;
+char *tmpsqluppass;
 PGconn *conn;
 PGresult *res;
+PGresult *update;
 char *connect_str = "host=localhost port=5432 dbname=project";
 FILE *fptr;
 void concatsqlsel()
 {
     free(tmpsqlsel);
-    tmpsqlsel = (char *)calloc(1000, sizeof(char));
-    printf("%s", tmpsqlsel);
+    tmpsqlsel = (char *)calloc(MAX, sizeof(char));
+    //printf("%s", tmpsqlsel);
     strcat(tmpsqlsel, "select * from user_list where username = \'");
     strcat(tmpsqlsel, username);
     strcat(tmpsqlsel, "\'");
     printf("Query to be passed, \"%s\"", tmpsqlsel);
 }
+
 void concatsqlins()
 {
     free(tmpsqlins);
-    tmpsqlins = (char *)calloc(1000, sizeof(char));
-    printf("%s", tmpsqlins);
+    tmpsqlins = (char *)calloc(MAX, sizeof(char));
+    //printf("%s", tmpsqlins);
     strcat(tmpsqlins, "insert into user_list values(");
     strcat(tmpsqlins, "\'");
     strcat(tmpsqlins, username);
@@ -42,13 +44,62 @@ void concatsqlins()
     strcat(tmpsqlins, "\0");
     printf("query to be passed, \"%s\"", tmpsqlins);
 }
+void concatsqluppass()
+{
+    free(tmpsqluppass);
+    tmpsqluppass = (char *)calloc(MAX, sizeof(char));
+    strcat(tmpsqluppass, "update user_list set encpass =\'");
+    strcat(tmpsqluppass, tmppass);
+    strcat(tmpsqluppass, "\'");
+    strcat(tmpsqluppass, "where encpass =\'");
+    strcat(tmpsqluppass, password);
+    strcat(tmpsqluppass, "\'");
+    printf("query to be passed, \"%s\"", tmpsqluppass);
+}
+void inmenu()
+{
+    int ch;
+    while (1)
+    {
+        printf("\nActions\n1.)Change Password\n2.)Change username\n3.)list storage\n4.)Exit");
+        printf("\nEnter one of the following actions: ");
+        scanf("%d", &ch);
+        PQclear(update);
+        switch (ch)
+        {
+        case 1:
+            printf("\nEnter new password: ");
+            tmppass = (char *)calloc(MAX, sizeof(char));
+            scanf("%1000s", tmppass);
+            concatsqluppass();
+            update = PQexec(conn, tmpsqluppass);
+            if (PQresultStatus(update) == PGRES_COMMAND_OK)
+            {
+                printf("\nPassword updated");
+                free(tmppass);
+            }
+            else
+            {
+                printf("\nError updating password, try again");
+            }
+            break;
+        case 2:
+            break;
+        case 4:
+            return;
+        default:
+            printf("\nInvalid choice");
+            break;
+        }
+    }
+}
 void signup()
 {
     printf("Enter the username : - \n");
-    username = (char *)calloc(1000, sizeof(char));
+    username = (char *)calloc(MAX, sizeof(char));
     scanf("%1000s", username);
     printf("Enter the password: - \n");
-    password = (char *)calloc(1000, sizeof(char));
+    password = (char *)calloc(MAX, sizeof(char));
     scanf("%1000s", password);
     concatsqlins();
     res = PQexec(conn, tmpsqlins);
@@ -71,10 +122,10 @@ void login()
     int k;
     int mrows;
     printf("Enter the username : \n");
-    username = (char *)calloc(1000, sizeof(char));
+    username = (char *)calloc(MAX, sizeof(char));
     scanf("%1000s", username);
     printf("Enter the password: \n");
-    password = (char *)calloc(1000, sizeof(char));
+    password = (char *)calloc(MAX, sizeof(char));
     scanf("%1000s", password);
     concatsqlsel();
     res = PQexec(conn, tmpsqlsel);
@@ -85,6 +136,7 @@ void login()
         if (strcmp(PQgetvalue(res, 0, 1), password) == 0)
         {
             printf("\nPassword matched");
+            inmenu();
         }
         else
         {
