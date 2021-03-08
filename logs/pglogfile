@@ -50,3 +50,49 @@
 2021-02-19 19:11:55.465 IST [6969] ERROR:  invalid byte sequence for encoding "UTF8": 0xf0 0x78 0x5d 0x05
 2021-02-19 19:14:10.052 IST [7031] ERROR:  invalid byte sequence for encoding "UTF8": 0xaf
 2021-02-19 19:14:38.581 IST [7079] ERROR:  invalid byte sequence for encoding "UTF8": 0x95
+2021-02-19 21:36:53.511 IST [3545] LOG:  received smart shutdown request
+2021-02-19 21:36:53.515 IST [3545] LOG:  background worker "logical replication launcher" (PID 3552) exited with exit code 1
+2021-02-19 21:36:53.515 IST [3547] LOG:  shutting down
+2021-02-19 21:36:53.531 IST [3545] LOG:  database system is shut down
+2021-02-21 13:51:10.477 IST [7507] LOG:  starting PostgreSQL 13.2 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 10.2.0, 64-bit
+2021-02-21 13:51:10.482 IST [7507] LOG:  listening on IPv6 address "::1", port 5432
+2021-02-21 13:51:10.482 IST [7507] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-02-21 13:51:10.484 IST [7507] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-02-21 13:51:10.499 IST [7508] LOG:  database system was shut down at 2021-02-19 21:36:53 IST
+2021-02-21 13:51:10.508 IST [7507] LOG:  database system is ready to accept connections
+2021-02-21 13:52:19.826 IST [7548] FATAL:  lock file "postmaster.pid" already exists
+2021-02-21 13:52:19.826 IST [7548] HINT:  Is another postmaster (PID 7507) running in data directory "/usr/local/pgsql/data"?
+2021-03-06 11:11:06.935 IST [2804] LOG:  starting PostgreSQL 13.2 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 10.2.0, 64-bit
+2021-03-06 11:11:06.956 IST [2804] LOG:  listening on IPv6 address "::1", port 5432
+2021-03-06 11:11:06.956 IST [2804] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-03-06 11:11:06.960 IST [2804] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-03-06 11:11:06.987 IST [2805] LOG:  database system was interrupted; last known up at 2021-03-05 09:24:23 IST
+2021-03-06 11:11:07.036 IST [2805] LOG:  database system was not properly shut down; automatic recovery in progress
+2021-03-06 11:11:07.042 IST [2805] LOG:  redo starts at 0/1720160
+2021-03-06 11:11:07.042 IST [2805] LOG:  invalid record length at 0/1720248: wanted 24, got 0
+2021-03-06 11:11:07.042 IST [2805] LOG:  redo done at 0/1720210
+2021-03-06 11:11:07.060 IST [2804] LOG:  database system is ready to accept connections
+2021-03-07 10:56:10.336 IST [2804] LOG:  received smart shutdown request
+2021-03-07 10:56:10.343 IST [2804] LOG:  background worker "logical replication launcher" (PID 2811) exited with exit code 1
+2021-03-07 10:56:10.345 IST [2806] LOG:  shutting down
+2021-03-07 10:56:10.376 IST [2804] LOG:  database system is shut down
+2021-03-08 09:56:59.026 IST [4358] LOG:  starting PostgreSQL 13.2 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 10.2.0, 64-bit
+2021-03-08 09:56:59.031 IST [4358] LOG:  listening on IPv6 address "::1", port 5432
+2021-03-08 09:56:59.031 IST [4358] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-03-08 09:56:59.033 IST [4358] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-03-08 09:56:59.044 IST [4359] LOG:  database system was shut down at 2021-03-07 23:41:43 IST
+2021-03-08 09:56:59.056 IST [4358] LOG:  database system is ready to accept connections
+2021-03-08 12:34:46.905 IST [11963] ERROR:  invalid byte sequence for encoding "UTF8": 0xc2 0x79
+2021-03-08 12:39:38.992 IST [12213] ERROR:  invalid byte sequence for encoding "UTF8": 0xb6
+2021-03-08 12:40:57.521 IST [12270] ERROR:  invalid byte sequence for encoding "UTF8": 0x89
+2021-03-08 12:58:31.995 IST [13016] ERROR:  invalid byte sequence for encoding "UTF8": 0xce 0x03
+2021-03-08 13:55:16.243 IST [4358] LOG:  received smart shutdown request
+2021-03-08 13:55:16.249 IST [4358] LOG:  background worker "logical replication launcher" (PID 4365) exited with exit code 1
+2021-03-08 13:55:16.249 IST [4360] LOG:  shutting down
+2021-03-08 13:55:16.264 IST [4358] LOG:  database system is shut down
+2021-03-08 15:36:18.362 IST [3529] LOG:  starting PostgreSQL 13.2 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 10.2.0, 64-bit
+2021-03-08 15:36:18.367 IST [3529] LOG:  listening on IPv6 address "::1", port 5432
+2021-03-08 15:36:18.367 IST [3529] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-03-08 15:36:18.368 IST [3529] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-03-08 15:36:18.382 IST [3530] LOG:  database system was shut down at 2021-03-08 13:55:16 IST
+2021-03-08 15:36:18.390 IST [3529] LOG:  database system is ready to accept connections
