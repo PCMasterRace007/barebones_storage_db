@@ -1,14 +1,12 @@
-#ifndef CONCAT_H
-#define CONCAT_H
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <libpq-fe.h>
+#include "../include/func.h"
 #define MAX 1000
-//#include "var.h"
 char *concatsqlsel(char *tmpuser)
 {
     char *sql;
-    //free(sql);
     sql = (char *)calloc(MAX, sizeof(char));
     strcat(sql, "select * from user_list where username = \'");
     strcat(sql, tmpuser);
@@ -35,6 +33,7 @@ char *concatsqlins(char *tmpuser, char *tmppass)
     printf("query to be passed, \"%s\"", sql);
     return sql;
 }
+
 char *concatsqluppass(char *tmppass, char *tmppassnew)
 {
     char *sql;
@@ -49,4 +48,18 @@ char *concatsqluppass(char *tmppass, char *tmppassnew)
     printf("query to be passed, \"%s\"", sql);
     return sql;
 }
-#endif
+
+char *concatsqlupuser(char *tmpuser, char *tmpusernew)
+{
+    char *sql;
+    sql = (char *)calloc(MAX, sizeof(char));
+    strcat(sql, "update user_list set username = '");
+    strcat(sql, tmpusernew);
+    strcat(sql, "'");
+    strcat(sql, " where username = '");
+    strcat(sql, tmpuser);
+    strcat(sql, "'");
+    strcat(sql, "\0");
+    printf("query to be passed, \"%s\"", sql);
+    return sql;
+}

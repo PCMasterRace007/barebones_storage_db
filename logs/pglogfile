@@ -96,3 +96,16 @@
 2021-03-08 15:36:18.368 IST [3529] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
 2021-03-08 15:36:18.382 IST [3530] LOG:  database system was shut down at 2021-03-08 13:55:16 IST
 2021-03-08 15:36:18.390 IST [3529] LOG:  database system is ready to accept connections
+2021-03-09 18:01:25.477 IST [15714] LOG:  starting PostgreSQL 13.2 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 10.2.0, 64-bit
+2021-03-09 18:01:25.482 IST [15714] LOG:  listening on IPv6 address "::1", port 5432
+2021-03-09 18:01:25.482 IST [15714] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-03-09 18:01:25.485 IST [15714] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-03-09 18:01:25.497 IST [15715] LOG:  database system was interrupted; last known up at 2021-03-08 15:41:18 IST
+2021-03-09 18:01:25.548 IST [15715] LOG:  database system was not properly shut down; automatic recovery in progress
+2021-03-09 18:01:25.553 IST [15715] LOG:  redo starts at 0/19F0578
+2021-03-09 18:01:25.553 IST [15715] LOG:  invalid record length at 0/19F0660: wanted 24, got 0
+2021-03-09 18:01:25.553 IST [15715] LOG:  redo done at 0/19F0628
+2021-03-09 18:01:25.572 IST [15714] LOG:  database system is ready to accept connections
+2021-03-09 18:22:23.185 IST [16748] ERROR:  invalid byte sequence for encoding "UTF8": 0x91
+2021-03-09 18:23:40.387 IST [16826] ERROR:  invalid byte sequence for encoding "UTF8": 0xa8
+2021-03-09 18:57:06.160 IST [17850] ERROR:  invalid byte sequence for encoding "UTF8": 0xbf

@@ -1,19 +1,13 @@
-#include "../include/concat.h"
+#include <libpq-fe.h>
 #include "../include/var.h"
-#include "../include/signup.h"
-#include "../include/login.h"
-//#include "../include/inmenu.h"
-char *username;
-char *password;
-char *newpass;
-char *newuser;
-char *tmpsqluppass;
-PGresult *update;
+#include "../include/func.h"
+PGconn *conn;
 char *connect_str = "host=localhost port=5432 dbname=project";
 void load()
 {
-    printf("\n Enter 1 to Signup\n Enter 2 to Login\n Enter 3 to exit\n");
     int load_ch;
+    printf("\nEnter 1 to Signup\nEnter 2 to Login\nEnter 3 to exit");
+    printf("\nEnter your choice: ");
     scanf("%d", &load_ch);
     if (load_ch == 1)
     {
@@ -22,6 +16,10 @@ void load()
     else if (load_ch == 2)
     {
         login();
+        if (login_token)
+        {
+            inmenu();
+        }
     }
     else if (load_ch == 3)
     {
@@ -29,7 +27,7 @@ void load()
     }
     else
     {
-        printf("\n Invalid Choice !");
+        printf("\nInvalid Choice !");
     }
 }
 int main()
@@ -37,11 +35,11 @@ int main()
     conn = PQconnectdb(connect_str);
     if (PQstatus(conn) != CONNECTION_OK)
     {
-        printf("Connection failed %s", PQerrorMessage(conn));
+        printf("\nConnection failed %s", PQerrorMessage(conn));
     }
     else
     {
-        printf("Connection established successfully to database %s", PQdb(conn));
+        printf("\nConnection established successfully to database %s", PQdb(conn));
         for (;;)
         {
             load();

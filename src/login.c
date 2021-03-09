@@ -1,22 +1,25 @@
-
-#ifndef LOGIN_H
-#define LOGIN_H
 #include <stdlib.h>
 #include <stdio.h>
-#include "var.h"
-#include "concat.h"
-#include "inmenu.h"
-PGconn *conn;
+#include <libpq-fe.h>
+#include "../include/var.h"
+#include "../include/func.h"
 PGresult *res_login;
+char *username_login;
+char *password_login;
+char *tmpsqlsel;
+int login_token = 0;
 void login()
 {
-    printf("Enter the username : \n");
-    char *username_login = (char *)calloc(MAX, sizeof(char));
+    free(username_login);
+    free(password_login);
+    printf("\nEnter the username : ");
+    username_login = (char *)calloc(MAX, sizeof(char));
     scanf("%1000s", username_login);
-    printf("Enter the password: \n");
-    char *password_login = (char *)calloc(MAX, sizeof(char));
+    printf("\nEnter the password: ");
+    password_login = (char *)calloc(MAX, sizeof(char));
     scanf("%1000s", password_login);
-    char *tmpsqlsel = concatsqlsel(username_login);
+    tmpsqlsel = (char *)calloc(MAX, sizeof(char));
+    tmpsqlsel = concatsqlsel(username_login);
     res_login = PQexec(conn, tmpsqlsel);
     if (PQresultStatus(res_login) == PGRES_TUPLES_OK && PQntuples(res_login) == 1)
     {
@@ -25,10 +28,11 @@ void login()
         if (strcmp(PQgetvalue(res_login, 0, 1), password_login) == 0)
         {
             printf("\nPassword matched");
-            inmenu(username_login, password_login);
+            login_token = 1;
         }
         else
         {
+            login_token = 0;
             printf("\npassword did not match, try again");
         }
     }
@@ -39,7 +43,4 @@ void login()
     }
     PQclear(res_login);
     free(tmpsqlsel);
-    free(username_login);
-    free(password_login);
 }
-#endif

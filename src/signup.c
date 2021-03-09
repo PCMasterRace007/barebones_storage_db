@@ -1,19 +1,21 @@
-#ifndef SIGNUP_H
-#define SIGNUP_H
 #include <stdlib.h>
 #include <stdio.h>
-#include "var.h"
+#include <libpq-fe.h>
+#include "../include/var.h"
+#include "../include/func.h"
+char *username_signup;
+char *password_signup;
 char *tmpsqlins;
-PGconn *conn;
 PGresult *res_signup;
 void signup()
 {
-    printf("Enter the username : - \n");
-    char *username_signup = (char *)calloc(MAX, sizeof(char));
+    printf("\nEnter the username : ");
+    username_signup = (char *)calloc(MAX, sizeof(char));
     scanf("%1000s", username_signup);
-    printf("Enter the password: - \n");
-    char *password_signup = (char *)calloc(MAX, sizeof(char));
+    printf("\nEnter the password: ");
+    password_signup = (char *)calloc(MAX, sizeof(char));
     scanf("%1000s", password_signup);
+    tmpsqlins = (char *)calloc(MAX, sizeof(char));
     tmpsqlins = concatsqlins(username_signup, password_signup);
     res_signup = PQexec(conn, tmpsqlins);
     if (PQresultStatus(res_signup) == PGRES_COMMAND_OK)
@@ -29,4 +31,3 @@ void signup()
     free(username_signup);
     free(password_signup);
 }
-#endif
