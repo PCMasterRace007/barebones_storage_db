@@ -24,7 +24,7 @@ void signup()
     }
     else
     {
-        printf("\nSignup not successful, try again");
+        printf("\nSignup not successful, maybe try again with different username which is not previously taken");
     }
     free(tmpsqlins);
     PQclear(res_signup);

@@ -109,3 +109,46 @@
 2021-03-09 18:22:23.185 IST [16748] ERROR:  invalid byte sequence for encoding "UTF8": 0x91
 2021-03-09 18:23:40.387 IST [16826] ERROR:  invalid byte sequence for encoding "UTF8": 0xa8
 2021-03-09 18:57:06.160 IST [17850] ERROR:  invalid byte sequence for encoding "UTF8": 0xbf
+2021-03-09 19:28:49.768 IST [19382] ERROR:  duplicate key value violates unique constraint "user_list_pkey"
+2021-03-09 19:28:49.768 IST [19382] DETAIL:  Key (username)=(123) already exists.
+2021-03-09 19:28:49.768 IST [19382] STATEMENT:  insert into user_list values('123', '1');
+2021-03-09 19:30:59.560 IST [19801] ERROR:  duplicate key value violates unique constraint "user_list_pkey"
+2021-03-09 19:30:59.560 IST [19801] DETAIL:  Key (username)=(1) already exists.
+2021-03-09 19:30:59.560 IST [19801] STATEMENT:  update user_list set username = '1' where username = '123'
+2021-03-09 19:32:51.507 IST [20063] ERROR:  duplicate key value violates unique constraint "user_list_pkey"
+2021-03-09 19:32:51.507 IST [20063] DETAIL:  Key (username)=(1) already exists.
+2021-03-09 19:32:51.507 IST [20063] STATEMENT:  insert into user_list values('1', '5');
+2021-03-09 19:38:56.753 IST [15714] LOG:  received smart shutdown request
+2021-03-09 19:38:56.755 IST [19640] FATAL:  terminating connection due to administrator command
+2021-03-09 19:38:56.755 IST [19623] FATAL:  terminating connection due to administrator command
+2021-03-09 19:38:56.762 IST [15714] LOG:  background worker "logical replication launcher" (PID 15721) exited with exit code 1
+2021-03-09 19:38:56.775 IST [15716] LOG:  shutting down
+2021-03-09 19:38:56.822 IST [15714] LOG:  database system is shut down
+2021-03-10 15:04:31.586 IST [10461] LOG:  starting PostgreSQL 13.2 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 10.2.0, 64-bit
+2021-03-10 15:04:31.593 IST [10461] LOG:  listening on IPv6 address "::1", port 5432
+2021-03-10 15:04:31.593 IST [10461] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-03-10 15:04:31.596 IST [10461] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-03-10 15:04:31.609 IST [10462] LOG:  database system was shut down at 2021-03-09 19:38:56 IST
+2021-03-10 15:04:31.618 IST [10461] LOG:  database system is ready to accept connections
+2021-03-11 13:17:26.484 IST [9261] LOG:  starting PostgreSQL 13.2 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 10.2.0, 64-bit
+2021-03-11 13:17:26.489 IST [9261] LOG:  listening on IPv6 address "::1", port 5432
+2021-03-11 13:17:26.489 IST [9261] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-03-11 13:17:26.491 IST [9261] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-03-11 13:17:26.505 IST [9262] LOG:  database system was interrupted; last known up at 2021-03-10 15:09:31 IST
+2021-03-11 13:17:26.551 IST [9262] LOG:  database system was not properly shut down; automatic recovery in progress
+2021-03-11 13:17:26.556 IST [9262] LOG:  redo starts at 0/1A051D8
+2021-03-11 13:17:26.556 IST [9262] LOG:  invalid record length at 0/1A052C0: wanted 24, got 0
+2021-03-11 13:17:26.556 IST [9262] LOG:  redo done at 0/1A05288
+2021-03-11 13:17:26.572 IST [9261] LOG:  database system is ready to accept connections
+2021-03-11 13:17:29.596 IST [9275] LOG:  invalid length of startup packet
+2021-03-11 13:17:41.185 IST [9284] LOG:  invalid length of startup packet
+2021-03-11 17:20:17.133 IST [9267] LOG:  could not close temporary statistics file "pg_stat_tmp/global.tmp": No space left on device
+2021-03-11 17:20:17.767 IST [9267] LOG:  could not close temporary statistics file "pg_stat_tmp/global.tmp": No space left on device
+2021-03-11 17:20:18.417 IST [9267] LOG:  could not close temporary statistics file "pg_stat_tmp/global.tmp": No space left on device
+2021-03-11 17:20:19.065 IST [9267] LOG:  could not close temporary statistics file "pg_stat_tmp/global.tmp": No space left on device
+2021-03-11 17:20:19.713 IST [9267] LOG:  could not close temporary statistics file "pg_stat_tmp/global.tmp": No space left on device
+2021-03-11 17:20:20.362 IST [9267] LOG:  could not close temporary statistics file "pg_stat_tmp/global.tmp": No space left on device
+2021-03-11 17:20:21.009 IST [9267] LOG:  could not close temporary statistics file "pg_stat_tmp/global.tmp": No space left on device
+2021-03-11 17:20:21.655 IST [9267] LOG:  could not close temporary statistics file "pg_stat_tmp/global.tmp": No space left on device
+2021-03-11 17:20:22.302 IST [9267] LOG:  could not close temporary statistics file "pg_stat_tmp/global.tmp": No space left on device
+2021-03-11 17:20:22.951 IST [9267] LOG:  could not close temporary statistics file "pg_stat_tmp/global.tmp": No space left on device

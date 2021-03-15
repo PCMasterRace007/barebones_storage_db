@@ -57,7 +57,7 @@ void inmenu()
             }
             else
             {
-                printf("\nError updating username, try again");
+                printf("\nError updating username, maybe try again with different username which is not previously taken");
             }
             break;
         case 4:
